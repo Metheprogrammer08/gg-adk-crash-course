@@ -1,5 +1,7 @@
 from google.adk.agents import Agent
+from dotenv import load_dotenv
 
+load_dotenv()
 # Create the root agent
 question_answering_agent = Agent(
     name="question_answering_agent",
