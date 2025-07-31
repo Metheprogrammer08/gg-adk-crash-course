@@ -1,6 +1,7 @@
 from google.adk.agents import Agent
 from google.adk.tools.tool_context import ToolContext
-
+import dotenv
+dotenv.load_dotenv()
 
 def add_reminder(reminder: str, tool_context: ToolContext) -> dict:
     """Add a new reminder to the user's reminder list.
