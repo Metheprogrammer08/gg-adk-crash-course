@@ -7,8 +7,6 @@ from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
 from utils import add_user_query_to_history, call_agent_async
 
-load_dotenv()
-
 # ===== PART 1: Initialize In-Memory Session Service =====
 # Using in-memory storage for this example (non-persistent)
 session_service = InMemorySessionService()
@@ -17,7 +15,7 @@ session_service = InMemorySessionService()
 # ===== PART 2: Define Initial State =====
 # This will be used when creating a new session
 initial_state = {
-    "user_name": "Brandon Hancock",
+    "user_name": "David Do",
     "purchased_courses": [],
     "interaction_history": [],
 }
@@ -30,7 +28,7 @@ async def main_async():
 
     # ===== PART 3: Session Creation =====
     # Create a new session with initial state
-    new_session = session_service.create_session(
+    new_session = await session_service.create_session(
         app_name=APP_NAME,
         user_id=USER_ID,
         state=initial_state,
@@ -69,7 +67,7 @@ async def main_async():
 
     # ===== PART 6: State Examination =====
     # Show final session state
-    final_session = session_service.get_session(
+    final_session = await session_service.get_session(
         app_name=APP_NAME, user_id=USER_ID, session_id=SESSION_ID
     )
     print("\nFinal Session State:")
@@ -83,4 +81,5 @@ def main():
 
 
 if __name__ == "__main__":
+    load_dotenv()
     main()
